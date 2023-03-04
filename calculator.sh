@@ -10,3 +10,25 @@ function main() {
 }
 
 main
+
+
+self_update() {
+    [ "$UPDATE_GUARD" ] && return
+    export UPDATE_GUARD=YES
+
+    cd $SCRIPTPATH
+    git fetch
+
+    [ -n $(git diff --name-only origin/$BRANCH | grep $SCRIPTNAME) ] && {
+        echo "Found a new version of me, updating myself..."
+        git pull --force
+        git checkout $BRANCH
+        git pull --force
+        echo "Running the new version..."
+        exec "$SCRIPTNAME" "${ARGS[@]}"
+
+        # Now exit this old instance
+        exit 1
+    }
+    echo "Already the latest version."
+}
