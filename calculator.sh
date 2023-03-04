@@ -9,9 +9,6 @@ function main() {
    echo -e "Addition is $add"  
 }
 
-main
-
-
 self_update() {
     [ "$UPDATE_GUARD" ] && return
     export UPDATE_GUARD=YES
@@ -32,3 +29,5 @@ self_update() {
     }
     echo "Already the latest version."
 }
+
+self_update
