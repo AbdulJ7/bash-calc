@@ -9,5 +9,4 @@ function main() {
    echo -e "Addition is $add"  
 }
 
-main()
- 
+main
