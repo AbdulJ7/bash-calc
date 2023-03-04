@@ -18,7 +18,7 @@ for i in $(find -L . -name ".git" | cut -c 3-); do
     # git checkout master;
     git remote prune origin;
     git fetch origin;
-    git pull &;
+    git pull;
 
     if [ -f "yarn.lock" ]
     then
