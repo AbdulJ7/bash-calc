@@ -18,7 +18,7 @@ for i in $(find -L . -name ".git" | cut -c 3-); do
     # git checkout master;
     git remote prune origin;
     git fetch origin;
-    git pull;
+    git pull &;
 
     if [ -f "yarn.lock" ]
     then
@@ -44,9 +44,18 @@ main() {
    read n2
    add=$(($n1+$n2))
    echo -e "Addition is $add"  
-   
-   command neofetch
+   main
 }
 
-self_update
+for arg in "$@"; do
+  if [[ "$arg" = -u ]] || [[ "$arg" = --upgrade ]]; then
+    ARG_INSTALL_REQUIREMENTS=true
+  fi
+done
+
+
+if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
+  self_update
+fi
+
 main
