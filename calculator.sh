@@ -33,4 +33,4 @@ main() {
 }
 
 self_update
-mian
+main
