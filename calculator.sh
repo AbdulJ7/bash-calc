@@ -19,6 +19,7 @@ for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
     git remote prune origin;
     git fetch origin;
     git stash;
+    git stash drop;
     git pull;
     
     
@@ -39,7 +40,7 @@ main() {
    read n2
    add=$(($n1+$n2))
    echo -e "Addition is $add" 
-   echo hiiiiie
+   echo hello aj
    main
 }
 
