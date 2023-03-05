@@ -7,7 +7,7 @@ CUR_DIR=$(pwd)
 echo -e "\n\033[1mPulling in latest changes for all repositories...\033[0m\n"
 
 # Find all git repositories and update it to the master latest revision
-for i in $(~/.local/share/bash-calc); do
+for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
     echo "";
     echo -e "\033[33m"+$i+"\033[0m";
 
@@ -49,5 +49,4 @@ if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
   self_update
 fi
 
-self_update
 main
