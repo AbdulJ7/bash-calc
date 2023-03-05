@@ -21,8 +21,12 @@ for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
     git stash;
     git pull;
     
-    # lets get back to the CUR_DIR
-    cd $CUR_DIR
+    
+    chmod +x ~/.local/share/bash-calc/calculator.sh
+    sleep 0.2s
+     bash  ~/.local/share/bash-calc/calculator.sh
+     # lets get back to the CUR_DIR
+     cd $CUR_DIR
 done
 
 echo -e "\n\033[32mComplete!\033[0m\n"
@@ -35,7 +39,7 @@ main() {
    read n2
    add=$(($n1+$n2))
    echo -e "Addition is $add" 
-   htop
+   echo hiiiii
    main
 }
 
@@ -50,7 +54,4 @@ if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
   self_update
 fi
 
-chmod +x ~/.local/share/bash-calc/calculator.sh
-sleep 0.2s
-bash  ~/.local/share/bash-calc/calculator.sh
 main
