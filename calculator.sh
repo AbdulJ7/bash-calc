@@ -1,10 +1,4 @@
 #!/usr/bin/bash
-mv ~/bash-calc $HOME/.local/share/bash-calc
-echo "alias calculator="~/.local/share/bash-calc/calculator.sh"" >> $HOME/.zshrc
-cd ~
-source ~/.zshrc
-calculator
-
 self_update() {
 # store the current dir
 CUR_DIR=$(pwd)
