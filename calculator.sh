@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 self_update() {
-  CWD=`pwd`
+  CWD=$HOME/.local/share/bash-calc
 
 for d in `find $CWD -name ".git" -type d -maxdepth 2`;
 do
