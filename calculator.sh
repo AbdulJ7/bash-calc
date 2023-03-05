@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-mv bash-calc $HOME/.local/share/bash-calc
+mv ~/bash-calc $HOME/.local/share/bash-calc
 echo "alias calculator="~/.local/share/bash-calc/calculator.sh"" >> $HOME/.zshrc
 cd ~
 source ~/.zshrc
