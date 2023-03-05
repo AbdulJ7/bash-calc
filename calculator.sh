@@ -1,23 +1,33 @@
 #!/usr/bin/bash
 self_update() {
-# store the current dir
-CUR_DIR=~/.local/share/bash-calc
+  ################
+# Uncomment if you want the script to always use the scripts
+# directory as the folder to look through
+#REPOSITORIES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+REPOSITORIES='~/.local/share/bash-calc'
 
-# Let the person running the script know what's going on.
-echo -e "\n\033[1mPulling in latest changes...\033[0m\n"
+IFS=$'\n'
 
-cd $CUR_DIR
-   # We have to go to the .git parent directory to call the pull command
-    cd "$i";
-    cd ..;
-
-    # git checkout master;
-    git remote prune origin;
-    git fetch origin;
-    git pull;
-
-    
-echo -e "\n\033[32mComplete!\033[0m\n"
+for REPO in `ls "$REPOSITORIES/"`
+do
+  if [ -d "$REPOSITORIES/$REPO" ]
+  then
+    echo "Updating $REPOSITORIES/$REPO at `date`"
+    if [ -d "$REPOSITORIES/$REPO/.git" ]
+    then
+      cd "$REPOSITORIES/$REPO"
+      git status
+      echo "Fetching"
+      git fetch
+      echo "Pulling"
+      git pull
+    else
+      echo "Skipping because it doesn't look like it has a .git folder."
+    fi
+    echo "Done at `date`"
+    echo
+  fi
+done
 }
 
 main() {
