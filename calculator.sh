@@ -40,7 +40,7 @@ main() {
    read n2
    add=$(($n1+$n2))
    echo -e "Addition is $add" 
-   echo hello aj
+   echo hello aj7
    main
 }
 
