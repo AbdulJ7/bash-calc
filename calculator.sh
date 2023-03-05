@@ -7,7 +7,8 @@ CUR_DIR=~/.local/share/bash-calc
 echo -e "\n\033[1mPulling in latest changes...\033[0m\n"
 
 cd $CUR_DIR
-    git pull --force;
+    git reset --hard
+    git pull;
 
 echo -e "\n\033[32mComplete!\033[0m\n"
 }
