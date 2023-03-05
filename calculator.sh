@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 self_update() {
+  cd $HOME/.local/share/bash-calc
   git pull -f
 }
 
