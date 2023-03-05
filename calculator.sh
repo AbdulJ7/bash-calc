@@ -21,7 +21,8 @@ main() {
    echo -e "Enter 2nd Number:\n"
    read n2
    add=$(($n1+$n2))
-   echo -e "Addition is $add"  
+   echo -e "Addition is $add" 
+   neofetch
    main
 }
 
