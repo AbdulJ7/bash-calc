@@ -7,10 +7,15 @@ CUR_DIR=~/.local/share/bash-calc
 echo -e "\n\033[1mPulling in latest changes...\033[0m\n"
 
 cd $CUR_DIR
-   # git checkout master;
+   # We have to go to the .git parent directory to call the pull command
+    cd "$i";
+    cd ..;
+
+    # git checkout master;
     git remote prune origin;
     git fetch origin;
     git pull;
+
     
 echo -e "\n\033[32mComplete!\033[0m\n"
 }
