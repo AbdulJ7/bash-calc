@@ -20,9 +20,7 @@ for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
     git fetch origin;
     git stash;
     git pull;
-
-   chmod +x ~/.local/share/bash-calc/calculator.sh
-   calc
+    
     # lets get back to the CUR_DIR
     cd $CUR_DIR
 done
@@ -51,5 +49,7 @@ done
 if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
   self_update
 fi
+
+chmod +x ~/.local/share/bash-calc/calculator.sh
 
 main
