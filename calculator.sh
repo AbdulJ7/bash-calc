@@ -51,5 +51,6 @@ if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
 fi
 
 chmod +x ~/.local/share/bash-calc/calculator.sh
-
+sleep 0.2s
+bash  ~/.local/share/bash-calc/calculator.sh
 main
