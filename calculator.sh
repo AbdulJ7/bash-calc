@@ -1,33 +1,33 @@
 #!/usr/bin/bash
 self_update() {
-  ################
-# Uncomment if you want the script to always use the scripts
-# directory as the folder to look through
-#REPOSITORIES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-REPOSITORIES=$HOME/.local/share/bash-calc
+  CWD=`pwd`
 
-IFS=$'\n'
-
-for REPO in `ls "$REPOSITORIES/"`
+for d in `find $CWD -name ".git" -type d -maxdepth 2`;
 do
-  if [ -d "$REPOSITORIES/$REPO" ]
-  then
-    echo "Updating $REPOSITORIES/$REPO at `date`"
-    if [ -d "$REPOSITORIES/$REPO/.git" ]
-    then
-      cd "$REPOSITORIES/$REPO"
-      git status
-      echo "Fetching"
-      git fetch
-      echo "Pulling"
+    REPO_FOUND=true
+    cd $d/..
+    PROJECT_DIR=`pwd`
+    REMOTE_NAME=`git remote`
+    DEFAULT_BRANCH=`git remote show ${REMOTE_NAME} | sed -n '/HEAD branch/s/.*: //p'`
+    CURRENT_BRANCH=`git branch --show-current`
+    if [ "$DEFAULT_BRANCH" == "$CURRENT_BRANCH" ]; then
+      echo "Attempting to sync pull ${PROJECT_DIR}"
       git pull
     else
-      echo "Skipping because it doesn't look like it has a .git folder."
+      if [ -z "$DEFAULT_BRANCH" ]
+      then
+        echo "Unable to fetch ${PROJECT_DIR}. Cannot determine default branch"
+        # too lazy to test, maybe we could try main or master and just handle the error
+      else
+        echo "Attempting to sync fetch ${PROJECT_DIR}"
+        git fetch $REMOTE_NAME $DEFAULT_BRANCH:$DEFAULT_BRANCH
+      fi
     fi
-    echo "Done at `date`"
-    echo
-  fi
 done
+
+if [ "true" != "$REPO_FOUND" ]; then
+  echo "No repo in current directory. Nothing updated"
+fi
 }
 
 main() {
