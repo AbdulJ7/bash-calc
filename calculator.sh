@@ -7,10 +7,11 @@ CUR_DIR=~/.local/share/bash-calc
 echo -e "\n\033[1mPulling in latest changes...\033[0m\n"
 
 cd $CUR_DIR
-    git stash;
-    git stash drop;
+   # git checkout master;
+    git remote prune origin;
+    git fetch origin;
     git pull;
-
+    
 echo -e "\n\033[32mComplete!\033[0m\n"
 }
 
