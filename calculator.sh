@@ -4,7 +4,7 @@ self_update() {
 # Uncomment if you want the script to always use the scripts
 # directory as the folder to look through
 #REPOSITORIES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-REPOSITORIES=$HOME/.local/share
+REPOSITORIES=$HOME/.local/share/bash-calc
 
 IFS=$'\n'
 
@@ -52,5 +52,4 @@ if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
   self_update
 fi
 
-self_update
 main
