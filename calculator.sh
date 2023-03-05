@@ -52,4 +52,5 @@ if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
   self_update
 fi
 
+self_update
 main
