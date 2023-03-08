@@ -99,7 +99,7 @@ for arg in "$@"; do
    if [[ "$arg" = d ]] || [[ "$arg" = --div ]]; then
      div
   fi
-   if [[ "$arg" = u ]] || [[ "$arg" = --help ]]; then
+   if [[ "$arg" = h ]] || [[ "$arg" = --help ]]; then
      _help
   fi
 done
