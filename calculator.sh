@@ -33,26 +33,35 @@ done
 echo -e "\n\033[32mComplete!\033[0m\n"
 }
 
-main() {
+_help() {
+  echo "Usage"
+  echo " a | --add) for addition"
+  
+}
+
+add() {
    echo -e "Enter 1st Number:\n"
    read n1
    echo -e "Enter 2nd Number:\n"
    read n2
    add=$(($n1+$n2))
    echo -e "Addition is $add" 
-   echo hello aj7
-   main
 }
 
 for arg in "$@"; do
   if [[ "$arg" = -u ]] || [[ "$arg" = --upgrade ]]; then
-    ARG_INSTALL_REQUIREMENTS=true
+    up=true
+  fi
+  if [[ "$arg" = a ]] || [[ "$arg" = --add ]]; then
+     add1=true
   fi
 done
 
 
-if [[ "$ARG_INSTALL_REQUIREMENTS" = true ]]; then
+if [[ "$up" = true ]]; then
   self_update
 fi
 
-main
+if [[ "$add1" = true ]]; then
+   add
+fi
