@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 if [[ ! -d $HOME/.local/share/bash-calc ]]; then
-    mv $(find -L . -name "bash-calc" | cut -c 3-)  $HOME/.local/share/bash-calc
+    mv $(find -L . -name "bash-calc" | cut -c 3-)  $HOME/.local/share
 fi
 
 self_update() {
