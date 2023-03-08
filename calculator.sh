@@ -1,8 +1,4 @@
 #!/usr/bin/bash
-if [[ ! -d $HOME/.local/share/bash-calc ]]; then
-    mv $(find -L . -name "bash-calc" | cut -c 3-)  $HOME/.local/share
-fi
-
 self_update() {
   # store the current dir
 CUR_DIR=$(pwd)
