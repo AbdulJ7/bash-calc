@@ -22,12 +22,10 @@ for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
     git stash drop;
     git pull;
     
-    
+    #lets go back current directory
+    cd $CUR_DIR
     chmod +x ~/.local/share/bash-calc/calculator.sh
-    sleep 0.2s
      bash  ~/.local/share/bash-calc/calculator.sh
-     # lets get back to the CUR_DIR
-     cd $CUR_DIR
 done
 
 echo -e "\n\033[32mComplete!\033[0m\n"
@@ -35,7 +33,12 @@ echo -e "\n\033[32mComplete!\033[0m\n"
 
 _help() {
   echo "Usage"
+  echo " u | --update) for addition"
+  echo " h | --help) for addition"
   echo " a | --add) for addition"
+  echo " s | --sub) for addition"
+  echo " m | --mul) for addition"
+  echo " d | --div) for addition"
   
 }
 
@@ -48,20 +51,54 @@ add() {
    echo -e "Addition is $add" 
 }
 
+
+sub() {
+   echo -e "Enter 1st Number:\n"
+   read n1
+   echo -e "Enter 2nd Number:\n"
+   read n2
+   sub=$(($n1-$n2))
+   echo -e "Subtraction is $sub" 
+}
+
+
+mul() {
+   echo -e "Enter 1st Number:\n"
+   read n1
+   echo -e "Enter 2nd Number:\n"
+   read n2
+   mul=$(($n1*$n2))
+   echo -e "Multiplication is $mul" 
+}
+
+
+div() {
+   echo -e "Enter 1st Number:\n"
+   read n1
+   echo -e "Enter 2nd Number:\n"
+   read n2
+   div=$(($n1/$n2))
+   echo -e "Divison is $div" 
+}
+
+
 for arg in "$@"; do
-  if [[ "$arg" = -u ]] || [[ "$arg" = --upgrade ]]; then
-    up=true
+  if [[ "$arg" = u ]] || [[ "$arg" = --update ]]; then
+    self_update
   fi
   if [[ "$arg" = a ]] || [[ "$arg" = --add ]]; then
-     add1=true
+     add
+  fi
+   if [[ "$arg" = s ]] || [[ "$arg" = --sub ]]; then
+     sub
+  fi
+   if [[ "$arg" = m ]] || [[ "$arg" = --mul ]]; then
+     mul
+  fi
+   if [[ "$arg" = d ]] || [[ "$arg" = --div ]]; then
+     div
+  fi
+   if [[ "$arg" = u ]] || [[ "$arg" = --help ]]; then
+     _help
   fi
 done
-
-
-if [[ "$up" = true ]]; then
-  self_update
-fi
-
-if [[ "$add1" = true ]]; then
-   add
-fi
