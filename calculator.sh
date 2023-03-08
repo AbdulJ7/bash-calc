@@ -1,4 +1,8 @@
 #!/usr/bin/bash
+if [[ ! -d $HOME/.local/share/bash-calc ]]; then
+    mv $(find -L . -name "bash-calc" | cut -c 3-)  $HOME/.local/share/bash-calc
+fi
+
 self_update() {
   # store the current dir
 CUR_DIR=$(pwd)
@@ -19,8 +23,9 @@ for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
     git remote prune origin;
     git fetch origin;
     git stash;
-    git stash drop;
     git pull;
+    git stash;
+    git stash drop;
     
     #lets go back current directory
     cd $CUR_DIR
@@ -102,3 +107,5 @@ for arg in "$@"; do
      _help
   fi
 done
+
+
