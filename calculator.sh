@@ -26,6 +26,7 @@ for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
     #lets go back current directory
     cd $CUR_DIR
     chmod +x ~/.local/share/bash-calc/calculator.sh
+    command clear
      bash  ~/.local/share/bash-calc/calculator.sh
 done
 
