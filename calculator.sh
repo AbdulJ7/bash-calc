@@ -15,7 +15,11 @@ do
   echo ""
   echo "****** Getting latest for" ${repo} "******"
   cd "${repo}"
-  git pull --rebase
+  CURRENT='git name-rev HEAD --name-only'
+  git checkout master
+  git pull origin master
+  git checkout ${CURRENT}
+  git rebase master
   echo "******************************************"
 done
 
