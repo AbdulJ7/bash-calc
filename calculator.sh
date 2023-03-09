@@ -16,10 +16,10 @@ do
   echo "****** Getting latest for" ${repo} "******"
   cd "${repo}"
   CURRENT='git name-rev HEAD --name-only'
-  git checkout master
-  git pull origin master
+  git checkout main
+  git pull origin main
   git checkout ${CURRENT}
-  git rebase master
+  git rebase main
   echo "******************************************"
 done
 
