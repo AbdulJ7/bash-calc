@@ -3,29 +3,25 @@ self_update() {
   # store the current dir
 CUR_DIR=$(pwd)
 
-# Let the person running the script know what's going on.
-echo -e "\n\033[1mPulling in latest changes for all repositories...\033[0m\n"
+repos=( 
+  "$HOME/.local/share/bash-calc"
+)
 
-# Find all git repositories and update it to the master latest revision
-for i in $(find -L $HOME/.local/share/bash-calc -name ".git" | cut -c 1-); do
-    echo "";
-    echo -e "\033[33m"+$i+"\033[0m";
+echo ""
+echo "Getting latest for" ${#repos[@]} "repositories using pull --rebase"
 
-    # We have to go to the .git parent directory to call the pull command
-    cd "$i";
-    cd ..;
-
-    # git checkout master;
-    git remote prune origin;
-    git fetch origin;
-    git stash;
-    git pull;
-    git stash;
-    git stash drop;
-    
-    #lets go back current directory
-    cd $CUR_DIR
+for repo in "${repos[@]}"
+do
+  echo ""
+  echo "****** Getting latest for" ${repo} "******"
+  cd "${repo}"
+  git pull --rebase
+  echo "******************************************"
 done
+
+#lets go back current directory
+cd $CUR_DIR
+
      chmod +x ~/.local/share/bash-calc/calculator.sh
      bash  ~/.local/share/bash-calc/calculator.sh
 
