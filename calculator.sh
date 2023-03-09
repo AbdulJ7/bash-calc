@@ -99,5 +99,5 @@ for arg in "$@"; do
      _help
   fi
 done
-
+echo "hello"
 
